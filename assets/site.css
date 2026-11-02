@@ -165,3 +165,38 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
  .lang-switch{margin-left:0}
  .triple-panel{min-height:480px}
 }
+
+
+/* V7 — Wedding Stories collection and About ordering */
+.home-about{grid-template-columns:minmax(0,1fr) minmax(280px,.85fr);align-items:center}
+.home-about .portrait{grid-column:2;grid-row:1}
+.home-about .about-copy{grid-column:1;grid-row:1}
+.collection-feature{display:grid;grid-template-columns:1.1fr .9fr;min-height:390px;border:1px solid var(--line);background:#151513;overflow:hidden}
+.collection-image,.collection-card-image{background:linear-gradient(0deg,#0b0b0bd9,#0b0b0b22),url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=85') center/cover}
+.collection-copy{padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.collection-copy h3,.collection-card-content h3{font:400 clamp(32px,4vw,48px)/1.05 var(--serif);margin:14px 0}
+.collection-copy p,.collection-card-content p{color:var(--muted);font-size:13px;line-height:1.8;max-width:440px}
+.collection-copy .text-link{margin-top:18px}
+.stories-hero:before{background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85')}
+.wedding-collections{background:#11110f}
+.wedding-collection-card{display:grid;grid-template-columns:1.1fr .9fr;border:1px solid var(--line);background:#151513;min-height:330px;overflow:hidden}
+.collection-card-content{padding:clamp(25px,4vw,48px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.collection-card-content .button{margin-top:18px;cursor:pointer;background:transparent;font-family:inherit}
+.collection-footnote{margin-top:24px;color:var(--muted);font-size:12px;line-height:1.8;max-width:700px}
+.video-modal{display:none;position:fixed;inset:0;z-index:1000;align-items:center;justify-content:center;padding:28px}
+.video-modal.is-open{display:flex}
+.video-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(7px)}
+.video-modal-panel{position:relative;z-index:1;width:min(1100px,100%);background:#090909;border:1px solid #454139;padding:14px}
+.modal-close{position:absolute;right:8px;top:-48px;width:38px;height:38px;border:1px solid #777;background:#111;color:#fff;font-size:27px;line-height:1;cursor:pointer}
+.video-modal .video-frame{aspect-ratio:16/9}
+body.modal-open{overflow:hidden}
+@media(max-width:760px){
+ .home-about{grid-template-columns:1fr!important}
+ .home-about .about-copy{grid-column:1;grid-row:1}
+ .home-about .portrait{grid-column:1;grid-row:2}
+ .collection-feature,.wedding-collection-card{grid-template-columns:1fr}
+ .collection-image,.collection-card-image{min-height:260px}
+ .video-modal{padding:14px}
+ .video-modal-panel{padding:6px}
+ .modal-close{right:0;top:-46px}
+}
