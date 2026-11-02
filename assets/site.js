@@ -34,7 +34,7 @@ conceptTile1:"The ceremony",conceptTile2:"The celebration",conceptTile3:"The peo
 howItWorksKicker:"YOUR WEDDING FILM · HOW IT WORKS",howItWorksTitle:"A thoughtful process,<br>from first message to final film.",howItWorksIntro:"Every project is planned around your day, your priorities and the moments that matter most to you.",
 process1Title:"Tell me about your day",process1Text:"Share your date, venue, schedule and a little about the celebration you are planning.",process2Title:"Shape your project",process2Text:"We discuss coverage hours, the moments to capture and the film formats you would like.",process3Title:"Receive your proposal",process3Text:"You receive a tailored proposal outlining the coverage, deliverables, timeline and price.",process4Title:"Filming & delivery",process4Text:"After the wedding, the footage is carefully edited and delivered in the formats agreed together.",
 quoteKicker:"START YOUR PROJECT",quoteTitle:"Let's talk about your wedding.",quoteText:"Tell me a little about your plans and I'll prepare a proposal around your day.",requestProposal:"Request a proposal ↗"
-
+,weddingDayPortrait:"A moment from their wedding day",firstPortfolio:"FIRST PORTFOLIO",viewStory:"View wedding story",viewMorePortfolio:"View more stories in the portfolio ↗",portfolioPageKicker:"AS VISUAL STORIES · WEDDING PORTFOLIO",portfolioPageHeadline:"Wedding<br>Portfolio.",portfolioPageLead:"A growing collection of wedding films and stories. Each celebration has its own page within the portfolio.",backToWeddings:"Back to Weddings ↗"
 },
 pt:{
 home:"Início",cinematic:"Histórias Cinematográficas",weddings:"Casamentos",events:"Eventos",about:"Sobre",contact:"Entre em contato ↗",
@@ -73,44 +73,75 @@ howItWorksKicker:"SEU FILME DE CASAMENTO · COMO FUNCIONA",howItWorksTitle:"Um p
 process1Title:"Conte um pouco sobre o dia",process1Text:"Compartilhe a data, o local, a programação e um pouco sobre a celebração que está planejando.",process2Title:"Vamos definir o projeto",process2Text:"Conversamos sobre as horas de cobertura, os momentos que deseja registrar e os formatos de vídeo.",process3Title:"Receba sua proposta",process3Text:"Você recebe uma proposta personalizada com cobertura, entregas, prazo e orçamento.",process4Title:"Filmagem e entrega",process4Text:"Após o casamento, o material é editado com cuidado e entregue nos formatos combinados.",
 quoteKicker:"COMECE SEU PROJETO",quoteTitle:"Vamos conversar sobre seu casamento.",quoteText:"Conte um pouco sobre seus planos e vou preparar uma proposta de acordo com o seu dia.",requestProposal:"Solicitar orçamento ↗"
 
-}};
-function setLang(lang){
- document.documentElement.lang=lang;
- document.querySelectorAll("[data-t]").forEach(el=>{const k=el.dataset.t;if(translations[lang]?.[k])el.innerHTML=translations[lang][k]});
- document.querySelectorAll("[data-lang]").forEach(b=>{b.classList.toggle("active",b.dataset.lang===lang);b.setAttribute("aria-pressed",String(b.dataset.lang===lang));});
- try{localStorage.setItem("asvs-lang",lang)}catch(e){}
+,weddingDayPortrait:"Um momento do dia do casamento",firstPortfolio:"PRIMEIRO PORTFÓLIO",viewStory:"Ver história do casamento",viewMorePortfolio:"Ver mais histórias no portfólio ↗",portfolioPageKicker:"AS VISUAL STORIES · PORTFÓLIO DE CASAMENTOS",portfolioPageHeadline:"Portfólio<br>de Casamentos.",portfolioPageLead:"Uma coleção crescente de filmes e histórias de casamento. Cada celebração tem seu espaço dentro do portfólio.",backToWeddings:"Voltar para Casamentos ↗"
 }
-document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
-try{setLang(localStorage.getItem("asvs-lang")||"en")}catch(e){setLang("en")}
-document.querySelectorAll("[data-year]").forEach(e=>e.textContent=new Date().getFullYear());
+};
 
-
-function initWeddingPortfolio(){
- const grid=document.getElementById("craig-videos");
- if(!grid)return;
- const cards=Array.from(grid.querySelectorAll("[data-video-card]"));
- const loadButton=document.querySelector("[data-load-more='craig-videos']");
- if(loadButton)loadButton.addEventListener("click",()=>{
-   cards.filter(card=>card.classList.contains("is-hidden")).forEach(card=>card.classList.remove("is-hidden"));
-   loadButton.hidden=true;
- });
- const modal=document.getElementById("wedding-video-modal");
- const frame=document.getElementById("wedding-video-frame");
- if(!modal||!frame)return;
- let previousFocus=null;
- function openVideo(id,trigger){
-   previousFocus=trigger;
-   frame.src="https://www.youtube-nocookie.com/embed/"+encodeURIComponent(id)+"?autoplay=1&rel=0";
-   modal.classList.add("is-open");modal.setAttribute("aria-hidden","false");
-   document.body.classList.add("modal-open");modal.querySelector(".modal-close").focus();
- }
- function closeVideo(){
-   modal.classList.remove("is-open");modal.setAttribute("aria-hidden","true");
-   document.body.classList.remove("modal-open");frame.src="";
-   if(previousFocus&&previousFocus.focus)previousFocus.focus();
- }
- grid.querySelectorAll("[data-video-id]").forEach(button=>button.addEventListener("click",()=>openVideo(button.dataset.videoId,button)));
- modal.querySelectorAll("[data-close-video]").forEach(button=>button.addEventListener("click",closeVideo));
- document.addEventListener("keydown",event=>{if(event.key==="Escape"&&modal.classList.contains("is-open"))closeVideo();});
+function setLang(lang) {
+  const dict = translations[lang] || translations.en;
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el => {
+    const value = dict[el.dataset.t];
+    if (typeof value === "string") el.innerHTML = value;
+  });
+  document.querySelectorAll("[data-lang]").forEach(button => {
+    const active = button.dataset.lang === lang;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  try { localStorage.setItem("asvs-lang", lang); } catch (_) {}
 }
-initWeddingPortfolio();
+
+function initLanguage() {
+  let lang = "en";
+  try { lang = localStorage.getItem("asvs-lang") || "en"; } catch (_) {}
+  setLang(lang);
+  document.querySelectorAll("[data-lang]").forEach(button => {
+    button.addEventListener("click", () => setLang(button.dataset.lang));
+  });
+}
+
+function initWeddingPortfolio() {
+  const grid = document.getElementById("craig-videos");
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll("[data-video-card]"));
+  const loadButton = document.querySelector("[data-load-more='craig-videos']");
+  if (loadButton) {
+    loadButton.addEventListener("click", () => {
+      cards.filter(card => card.classList.contains("is-hidden")).forEach(card => card.classList.remove("is-hidden"));
+      loadButton.hidden = true;
+    });
+  }
+  const modal = document.getElementById("wedding-video-modal");
+  const frame = document.getElementById("wedding-video-frame");
+  if (!modal || !frame) return;
+  let previousFocus = null;
+  function openVideo(id, trigger) {
+    previousFocus = trigger;
+    frame.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?autoplay=1&rel=0";
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    modal.querySelector(".modal-close").focus();
+  }
+  function closeVideo() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    frame.src = "";
+    if (previousFocus && previousFocus.focus) previousFocus.focus();
+  }
+  grid.querySelectorAll("[data-video-id]").forEach(button => {
+    button.addEventListener("click", () => openVideo(button.dataset.videoId, button));
+  });
+  modal.querySelectorAll("[data-close-video]").forEach(button => button.addEventListener("click", closeVideo));
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) closeVideo();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initLanguage();
+  initWeddingPortfolio();
+  document.querySelectorAll("[data-year]").forEach(el => el.textContent = String(new Date().getFullYear()));
+});
