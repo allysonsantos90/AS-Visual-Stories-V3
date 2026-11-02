@@ -1,33 +1,21 @@
-# AS Visual Stories — corrected GitHub Pages package
+AS VISUAL STORIES — WEBSITE UPDATE
 
-## IMPORTANT: upload the whole `videos` folder
-Your current page URL is:
-`https://allysonsantos90.github.io/videos/wedding-event-films.html`
+Upload the CONTENTS of this folder to the ROOT of your GitHub repository.
+Do not upload the enclosing folder itself.
 
-This package preserves that URL structure. Upload the **contents of this `videos` folder** into the existing repository's `videos/` directory, including the `assets/` folder. Do not upload only the HTML files.
+Required structure:
+index.html
+about.html
+weddings.html
+events.html
+cinematic-stories.html
+wedding-event-films.html (legacy page; can be removed after confirming new links)
+assets/site.css
+assets/site.js
+assets/allyson-portrait.jpg
 
-Expected repository layout:
-```
-repository/
-└── videos/
-    ├── index.html
-    ├── cinematic-stories.html
-    ├── wedding-event-films.html
-    ├── about.html
-    └── assets/
-        ├── site.css
-        ├── site.js
-        └── allyson-portrait.jpg
-```
+GitHub Pages:
+Settings > Pages > Deploy from a branch > main > /(root)
 
-The missing CSS/assets path is what caused the unstyled page in the screenshot.
-
-## Features
-- Fixed relative asset paths for the `/videos/` URL
-- Updated About section using the portrait you supplied
-- Instagram embeds for the five post URLs you supplied, plus Follow button
-- Craig & Sophie YouTube playlist embedded as a single player using the playlist ID previously shared
-- Clearer EN/PT selected-state control
-- Responsive layout
-
-Instagram embeds require the posts to be public and Instagram's embed script to load. If a post is unavailable for embedding, the profile Follow button remains available.
+The site has three portfolio areas: Weddings, Events and Cinematic Stories.
+The language switch supports English and Portuguese.
