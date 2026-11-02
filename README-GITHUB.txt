@@ -1,21 +1,29 @@
-AS VISUAL STORIES — WEBSITE UPDATE
+AS VISUAL STORIES — V5 CLEAN PACKAGE
 
-Upload the CONTENTS of this folder to the ROOT of your GitHub repository.
-Do not upload the enclosing folder itself.
+This package replaces the active site pages with one consistent navigation and corrected responsive layout.
 
-Required structure:
+UPLOAD:
+Upload the CONTENTS of this ZIP to the ROOT of the GitHub repository (not into a nested folder).
+Choose overwrite/replace when GitHub asks about files with the same names.
+
+EXPECTED ROOT:
 index.html
-about.html
 weddings.html
 events.html
 cinematic-stories.html
-wedding-event-films.html (legacy page; can be removed after confirming new links)
-assets/site.css
-assets/site.js
-assets/allyson-portrait.jpg
+about.html
+assets/
+  site.css
+  site.js
+  allyson-portrait.jpg
 
-GitHub Pages:
-Settings > Pages > Deploy from a branch > main > /(root)
+IMPORTANT CLEANUP:
+After uploading and confirming the new site works, delete the obsolete file:
+wedding-event-films.html
+It is an old combined Weddings & Events page and should no longer be used.
 
-The site has three portfolio areas: Weddings, Events and Cinematic Stories.
-The language switch supports English and Portuguese.
+All five active pages now use the same navigation:
+Weddings | Events | Cinematic Stories | About
+
+GitHub Pages should deploy from branch main, folder /(root).
+After deployment, hard refresh with Ctrl+F5.
