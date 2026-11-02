@@ -1,7 +1,7 @@
 const translations={
 en:{
 home:"Home",cinematic:"Cinematic Stories",weddings:"Weddings",events:"Events",about:"About",contact:"Get in touch ↗",
-homeTagline:"Stories are everywhere. Let's bring them to life.",
+homeTagline:"Stories are everywhere. Let's bring them to life.",cinematicHomeTitle:"Cinematic<br>Stories",
 weddingsDesc:"Honest, heartfelt films that preserve the emotion of your day.",
 eventsDesc:"Stories from gatherings, celebrations and experiences of every kind.",
 cinematicDesc:"Finding beauty in nature, everyday life and the places in between.",
@@ -25,7 +25,7 @@ eventCtaKicker:"PLANNING AN EVENT?",eventCtaTitle:"Let's capture its story.",eve
 },
 pt:{
 home:"Início",cinematic:"Histórias Cinematográficas",weddings:"Casamentos",events:"Eventos",about:"Sobre",contact:"Entre em contato ↗",
-homeTagline:"Histórias estão por toda parte. Vamos dar vida a elas.",
+homeTagline:"Histórias estão por toda parte. Vamos dar vida a elas.",cinematicHomeTitle:"Histórias<br>em Filme",
 weddingsDesc:"Filmes autênticos e emocionantes para preservar os sentimentos do seu dia.",
 eventsDesc:"Histórias de encontros, celebrações e experiências de todos os tipos.",
 cinematicDesc:"Encontrando beleza na natureza, no cotidiano e nos lugares pelo caminho.",
